@@ -1,0 +1,4 @@
+# compile using "-lm" at the end of the complie command, to link the math.h library to the compilation procedure, something like:
+
+gcc main.c Movie.c debug.c in_order.c binary_search.c distribute.c watch.c filter.c heap.c -o movie -lm
+
