@@ -120,44 +120,44 @@ int h(int user_id){
 	return h_value;
 }
 
-	int register_user(int userID){
+int register_user(int userID){
 
-		if(is_unique(userID) == FAILURE){
-			return 0;
-		}
-
-		user_t* new_user = (user_t*)malloc(sizeof(user_t));
-
-		
-		new_user->history = NULL;
-		new_user->userID = userID;
-
-		/* User cell is empty, no chain exists there yet */
-		if(!user_hashtable_p[h(userID)]){
-			user_hashtable_p[h(userID)] = new_user;
-			new_user->next = NULL;
-		}else{
-			new_user->next = user_hashtable_p[h(new_user->userID)];
-			user_hashtable_p[h(new_user->userID)] = new_user;
-		}
-
-		int i = 0;
-
-		for(i = 0 ; i < hashtable_s ; i++){
-
-			printf("Chain <%d> of Users:\n",i);
-
-			user_t* current = user_hashtable_p[i];
-
-			while(current != NULL){
-				printf("	<%d>\n",current->userID);
-				current = current->next;
-			}
-		}
-		printf("DONE\n");
-
-		return 1;
+	if(is_unique(userID) == FAILURE){
+		return 0;
 	}
+
+	user_t* new_user = (user_t*)malloc(sizeof(user_t));
+
+	
+	new_user->history = NULL;
+	new_user->userID = userID;
+
+	/* User cell is empty, no chain exists there yet */
+	if(!user_hashtable_p[h(userID)]){
+		user_hashtable_p[h(userID)] = new_user;
+		new_user->next = NULL;
+	}else{
+		new_user->next = user_hashtable_p[h(new_user->userID)];
+		user_hashtable_p[h(new_user->userID)] = new_user;
+	}
+
+	int i = 0;
+
+	for(i = 0 ; i < hashtable_s ; i++){
+
+		printf("Chain <%d> of Users:\n",i);
+
+		user_t* current = user_hashtable_p[i];
+
+		while(current != NULL){
+			printf("	<%d>\n",current->userID);
+			current = current->next;
+		}
+	}
+	printf("DONE\n");
+
+	return 1;
+}
  
  int unregister_user(int userID){
 
